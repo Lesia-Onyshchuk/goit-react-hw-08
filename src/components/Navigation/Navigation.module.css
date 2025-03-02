@@ -1,0 +1,16 @@
+.navigation {
+  display: flex;
+  gap: 36px;
+  font-size: 36px;
+}
+
+.link {
+  color: currentColor;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.linkActive {
+  color: #854234;
+  font-weight: 700;
+}

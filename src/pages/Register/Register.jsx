@@ -1,7 +1,8 @@
 import { Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { registerThunk } from "../../redux/auth/operations";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import css from "./Register.module.css";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -21,23 +22,21 @@ const Register = () => {
   return (
     <div>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <Form className="form">
-          <label>
-            <span>Name:</span>
-            <Field name="name" />
-          </label>
-          <label>
-            <span>Email:</span>
-            <Field name="email" />
-          </label>
-          <label>
-            <span>Password:</span>
-            <Field name="password" type="password" />
-          </label>
-          <button type="submit">Register</button>
+        <Form className={css.form}>
+          <label>Name:</label>
+          <Field className={css.field} name="name" />
+          <label>Email:</label>
+          <Field className={css.field} name="email" />
+          <label>Password:</label>
+          <Field className={css.field} name="password" type="password" />
+          <button className={css.registerButton} type="submit">
+            Register
+          </button>
           <p>
             You already have account!
-            <Link to="/login">Log in</Link>
+            <NavLink className={css.link} to="/login">
+              Log in
+            </NavLink>
           </p>
         </Form>
       </Formik>
