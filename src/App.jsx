@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import LayOut from "./LayOut";
 import Home from "./pages/Home/Home";
 import Contacts from "./pages/Contacts/Contacts";
 import NotFound from "./pages/NotFound/NotFound";
@@ -12,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SelectIsRefreshing } from "./redux/auth/selectors";
 import { PrivateRoute } from "./PrivateRoute";
 import { RestrictedRoute } from "./RestrictedRoute";
+import Layout from "./Layout";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ function App() {
   return isRefreshing ? null : (
     <div>
       <Routes>
-        <Route path="/" element={<LayOut />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route
             path="contacts"

@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import AppBar from "./components/AppBar/AppBar";
 
-const LayOut = () => {
+const Layout = () => {
   return (
     <div>
       <AppBar />
@@ -10,4 +10,4 @@ const LayOut = () => {
   );
 };
 
-export default LayOut;
+export default Layout;
