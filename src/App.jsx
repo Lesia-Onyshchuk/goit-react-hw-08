@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SelectIsRefreshing } from "./redux/auth/selectors";
 import { PrivateRoute } from "./PrivateRoute";
 import { RestrictedRoute } from "./RestrictedRoute";
-import Layout from "./Layout";
+import Layout from "./LayOut";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Contacts = lazy(() => import("./pages/Contacts/Contacts"));
