@@ -6,7 +6,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import LogIn from "./pages/LogIn/LogIn";
 import Register from "./pages/Register/Register";
 import { useEffect } from "react";
-import { refreshUser } from "./redux/auth/operations";
+import { refreshUser, setAuthHeader } from "./redux/auth/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { SelectIsRefreshing } from "./redux/auth/selectors";
 import { PrivateRoute } from "./PrivateRoute";
@@ -18,6 +18,11 @@ function App() {
   const isRefreshing = useSelector(SelectIsRefreshing);
 
   useEffect(() => {
+    // const savedToken = localStorage.getItem("savedToken");
+    // if (savedToken) {
+    //   setAuthHeader(savedToken);
+    //   dispatch(refreshUser());
+    // }
     dispatch(refreshUser());
   }, [dispatch]);
 
@@ -32,20 +37,23 @@ function App() {
               <PrivateRoute redirectTo="/login" component={<Contacts />} />
             }
           />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute redirectTo="/contacts" component={<LogIn />} />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<Register />}
+              />
+            }
+          />
         </Route>
         <Route path="*" element={<NotFound />} />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute redirectTo="/contacts" component={<LogIn />} />
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute redirectTo="/contacts" component={<Register />} />
-          }
-        />
       </Routes>
     </div>
   );

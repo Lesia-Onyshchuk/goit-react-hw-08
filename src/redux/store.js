@@ -23,11 +23,13 @@ const persistConfig = {
 
 const stage = import.meta.env.MODE;
 
+const persistedReducer = persistReducer(persistConfig, authReducer);
+
 export const store = configureStore({
   reducer: {
-    contacts: persistReducer(persistConfig, contactReducer),
+    contacts: contactReducer,
     filters: filtersReducer,
-    auth: authReducer,
+    auth: persistedReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
