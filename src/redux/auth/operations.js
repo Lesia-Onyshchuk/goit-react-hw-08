@@ -10,7 +10,7 @@ const setAuthHeader = (token) => {
 };
 
 const clearAuthHeader = () => {
-  api.defaults.headers.common.Authorization = ``;
+  api.defaults.headers.common.Authorization = "";
 };
 
 export const loginThunk = createAsyncThunk(
@@ -56,16 +56,13 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const savedToken = thunkAPI.getState().auth.token;
-      console.log("Saved token:", savedToken);
       if (savedToken === null) {
-        return thunkAPI.rejectWithValue("Token is not exist");
+        return thunkAPI.rejectWithValue("Token is not found");
       }
       setAuthHeader(savedToken);
-      console.log("Token set in headers");
       const { data } = await api.get("users/current");
       return data;
     } catch (error) {
-      console.error("Error:", error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
